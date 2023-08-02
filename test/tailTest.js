@@ -1,15 +1,19 @@
+const assert = require('chai').assert;
 const assertEqual = require('../assertEqual');
 const tail = require('../tail')
 
-
-const original = ["Hello", "Lighthouse", "Labs"];
+const expected = ["Lighthouse", "Labs"];
 let actual = ["Hello", "Lighthouse", "Labs"];
-const result = tail(actual);
-console.log('Slice Result: ' + result);
 
-assertEqual(actual.length, original.length);
-for (let i = 0; i < original.length; i++) {
-  assertEqual(original[i], actual[i]);
-}
+describe("#tail", () => {
+  it("returns passed if length is the same", () => {
+    assert.strictEqual(tail(actual).length, expected.length);
+  })
 
+  it("returns passed if all items are the same", () => {
+    for (let i = 0; i < expected.length; i++) {
+      assert.strictEqual(tail(actual)[i], expected[i]);
+    }
+  })
+})
 
